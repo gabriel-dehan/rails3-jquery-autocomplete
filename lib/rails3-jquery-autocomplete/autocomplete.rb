@@ -46,7 +46,7 @@ module Rails3JQueryAutocomplete
 
           method = options[:column_name] if options.has_key?(:column_name)
 
-          term = params[:term]
+          term = params[:term].strip
 
           if term && !term.blank?
             #allow specifying fully qualified class name for model object
@@ -93,4 +93,3 @@ module Rails3JQueryAutocomplete
     end
   end
 end
-
