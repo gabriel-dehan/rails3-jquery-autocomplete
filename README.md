@@ -12,16 +12,16 @@ and [SimpleForm](https://github.com/plataformatec/simple_form)
 ## Logs
 
 * *1.1.0* :
-            * Code refactoring;
-            * Now handle textareas;
-            * Can now be set up via Javascript : `$('#my_element').railsAutocomplete({ /* options */ });`;
-            * With a new set of options;
-            * Term autocompletion now works on previous terms, and the autocompletion will no longer happen at the end of the input/textarea, but were the cursor stands;
-            * Can now handle writing terms among normal non completed text through the use of a delimiter. The autocompletion is disabled while writing normal text and is triggered when one presses the delimiter key (like '#' or ',', ...). There are still a few glitches;
-            * Terms are now using a comma delimiter by default, enabling multiple terms autocompletion in a same input;
-            * Delimiters can be at the beginning or the end of the term string. Allowing for "#term1 #term2" or "term1, term2";
-            * <TAB> is now used for autocompletion and an option allows to keep the focus in the current element;
-            * The current autocompleted term can now be filtered before processing.
+ * Code refactoring;
+ * Now handle textareas;
+ * Can now be set up via Javascript : `$('#my_element').railsAutocomplete({ /* options */ });`;
+ * With a new set of options;
+ * Term autocompletion now works on previous terms, and the autocompletion will no longer happen at the end of the input/textarea, but were the cursor stands;
+ * Can now handle writing terms among normal non completed text through the use of a delimiter. The autocompletion is disabled while writing normal text and is triggered when one presses the delimiter key (like '#' or ',', ...). There are still a few glitches;
+ * Terms are now using a comma delimiter by default, enabling multiple terms autocompletion in a same input;
+ * Delimiters can be at the beginning or the end of the term string. Allowing for "#term1 #term2" or "term1, term2";
+ * <TAB> is now used for autocompletion and an option allows to keep the focus in the current element;
+ * The current autocompleted term can now be filtered before processing.
 
 ## ActiveRecord
 
