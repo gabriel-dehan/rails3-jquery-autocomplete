@@ -221,29 +221,24 @@ Now your autocomplete code is unobtrusive, Rails 3 style.
 By default, a rather basic autocompletion for all fields and text-area with the attribute data-autocomplete takes place.
 The default text fields and text area are activated with the following options :
 
-    ```javascript
-         jQuery('input[data-autocomplete]').railsAutocomplete({
-              delimiter       : ',',
-              insertDelimiter : true,
-              focusOnNext     : true
-          });
-          jQuery('textarea[data-autocomplete]').railsAutocomplete({
-              delimiter       : ',',
-              insertDelimiter : true
-          });
-    ```
+    jQuery('input[data-autocomplete]').railsAutocomplete({
+        delimiter       : ',',
+        insertDelimiter : true,
+        focusOnNext     : true
+    });
+    jQuery('textarea[data-autocomplete]').railsAutocomplete({
+        delimiter       : ',',
+        insertDelimiter : true
+    });
 
 To deactivate the default autocompletion use :
 
-   ```javascript
      jQuery.railsAutocomplete.configuration.createWithDefaults = false;
-   ```
 
 and call `jQuery(e).railsAutoComplete();` with the options you need.
 
 Available options are the followings :
 
-    ```javascript
     // Default options
     {
       delimiter: null,
@@ -252,8 +247,7 @@ Available options are the followings :
       url: null,
       withText: false,
       filter: null
-      }
-    ```
+    }
 
 For more informations please refer to the documented code in the file autocomplete-rails-uncompressed.js,
 around line 257 (function _defaultOptions());
