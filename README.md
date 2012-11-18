@@ -9,6 +9,20 @@ Supports both ActiveRecord, [mongoid](http://github.com/mongoid/mongoid), and [M
 Works with [Formtastic](http://github.com/justinfrench/formtastic)
 and [SimpleForm](https://github.com/plataformatec/simple_form)
 
+## Logs
+
+* *1.1.0* :
+            * Code refactoring;
+            * Now handle textareas;
+            * Can now be set up via Javascript : `$('#my_element').railsAutocomplete({ /* options */ });`;
+            * With a new set of options;
+            * Term autocompletion now works on previous terms, and the autocompletion will no longer happen at the end of the input/textarea, but were the cursor stands;
+            * Can now handle writing terms among normal non completed text through the use of a delimiter. The autocompletion is disabled while writing normal text and is triggered when one presses the delimiter key (like '#' or ',', ...). There are still a few glitches;
+            * Terms are now using a comma delimiter by default, enabling multiple terms autocompletion in a same input;
+            * Delimiters can be at the beginning or the end of the term string. Allowing for "#term1 #term2" or "term1, term2";
+            * <TAB> is now used for autocompletion and an option allows to keep the focus in the current element;
+            * The current autocompleted term can now be filtered before processing.
+
 ## ActiveRecord
 
 You can find a [detailed example](http://github.com/crowdint/rails3-jquery-autocomplete-app)
@@ -179,25 +193,70 @@ Autocomplete uses Yajl as JSON encoder/decoder, but you can specify your own
 
 ### View
 
-On your view, all you have to do is include the attribute autocomplete on the text field
+On your view, all you have to do is include the attribute autocomplete on the field or textarea
 using the url to the autocomplete action as the value.
 
     form_for @product do |f|
       f.autocomplete_field :brand_name, autocomplete_brand_name_products_path
+      f.autocomplete_area  :brand_name, autocomplete_brand_name_products_path
     end
 
 This will generate an HTML tag that looks like:
 
     <input type="text" data-autocomplete="products/autocomplete_brand_name">
+    <textarea data-autocomplete="products/autocomplete_brand_name"></textarea>
 
 If you are not using a FormBuilder (form_for) or you just want to include an autocomplete field without the form, you can use the
-*autocomplete_field_tag* helper.
+*autocomplete_field_tag* and *autocomplete_area_tag* helper.
 
     form_tag 'some/path'
       autocomplete_field_tag 'address', '', address_autocomplete_path, :size => 75
+      autocomplete_area_tag  'address', '', address_autocomplete_path, :size => 75
     end
 
 Now your autocomplete code is unobtrusive, Rails 3 style.
+
+### Enabling the autocompletion
+
+By default, a rather basic autocompletion for all fields and text-area with the attribute data-autocomplete takes place.
+The default text fields and text area are activated with the following options :
+
+    ```javascript
+         jQuery('input[data-autocomplete]').railsAutocomplete({
+              delimiter       : ',',
+              insertDelimiter : true,
+              focusOnNext     : true
+          });
+          jQuery('textarea[data-autocomplete]').railsAutocomplete({
+              delimiter       : ',',
+              insertDelimiter : true
+          });
+    ```
+
+To deactivate the default autocompletion use :
+
+   ```javascript
+     jQuery.railsAutocomplete.configuration.createWithDefaults = false;
+   ```
+
+and call `jQuery(e).railsAutoComplete();` with the options you need.
+
+Available options are the followings :
+
+    ```javascript
+    // Default options
+    {
+      delimiter: null,
+      delimiterPosition: 'after',
+      focusOnNext: false,
+      url: null,
+      withText: false,
+      filter: null
+      }
+    ```
+
+For more informations please refer to the documented code in the file autocomplete-rails-uncompressed.js,
+around line 257 (function _defaultOptions());
 
 ### Getting the object id
 
@@ -364,4 +423,3 @@ Everyone on [this list](https://github.com/crowdint/rails3-jquery-autocomplete/c
 [Crowd Interactive](http://www.crowdint.com) is an American web design and development company that happens to work in Colima, Mexico.
 We specialize in building and growing online retail stores. We don’t work with everyone – just companies we believe in. Call us today to see if there’s a fit.
 Find more info [here](http://www.crowdint.com)!
-
