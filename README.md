@@ -231,7 +231,7 @@ The default text fields and text area are activated with the following options :
         insertDelimiter : true
     });
 
-To deactivate the default autocompletion use :
+To deactivate the default autocompletion use the following BEFORE the the page loaded event ($(document, function() {}), $(function(){}), $.onload, ...) :
 
      jQuery.railsAutocomplete.configuration.createWithDefaults = false;
 
